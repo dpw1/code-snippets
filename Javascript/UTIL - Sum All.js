@@ -9,9 +9,9 @@ function sumAll(){
 	let items = [];
 	Array.from(arguments).map(item => {
 		if (Array.isArray(item)){
-			item.map(item2 => items.push(parseFloat(item2)))
+			item.map(item2 => items.push(Number(item2)))
 		} else{
-			items.push(parseFloat(item))
+			items.push(Number(item))
 		}
 	});
 	return items.reduce((prev, next) => prev + next, 0);

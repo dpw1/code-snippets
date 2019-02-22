@@ -1,11 +1,10 @@
 /*
 ## Intro:
 Replace all.
-Replace all characters from a string based on an object.
+Replace multiple characters in a string.
 
 ## Usage:
 */
-/* Prototype */
 String.prototype.replaceAll = function(obj) {
 	let finalString = '';
 	let word = this;
@@ -23,5 +22,3 @@ String.prototype.replaceAll = function(obj) {
 };
 
 'abc'.replaceAll({'a':'x', 'b':'y'}); //"xyc"
-
-/* Function */
