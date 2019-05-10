@@ -7,13 +7,16 @@ Sum all passed variables (string, array, int, float);
 */
 function sumAll(){
 	let items = [];
-	Array.from(arguments).map(item => {
+	
+	Array.from(arguments)
+	.map(item => {
 		if (Array.isArray(item)){
 			item.map(item2 => items.push(Number(item2)))
 		} else{
 			items.push(Number(item))
 		}
 	});
+	
 	return items.reduce((prev, next) => prev + next, 0);
 }
 sumAll(1,2,3) //6
