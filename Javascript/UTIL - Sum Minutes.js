@@ -47,7 +47,7 @@ const mins = ["01:20", "1:23"];
 const hours = ["00:03:59", "02:05:01"];
 const mix = ["00:04:58", "10:00"];
 
-console.log(sumMinutes(seconds)); //'01:02'
+console.log(sumMinutes(seconds)); //'00:12'
 console.log(sumMinutes(mins)); //'02:43'
 console.log(sumMinutes(hours)); //'02:09:00'
 console.log(sumMinutes(mix)); //'14:58'
