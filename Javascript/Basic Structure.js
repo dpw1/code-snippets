@@ -15,7 +15,6 @@ ezfy = (function() {
         document.querySelector(parent).appendChild(document.querySelector(child));
     }
 
-
     function _isProductPage() {
         return /product/.test(window.location.href);
     }
@@ -34,20 +33,52 @@ ezfy = (function() {
         setTimeout(() => _waitUntilElementExists(selector, callback), 500);
     }
 
+    function _addStyle(styleString) {
+        const style = document.createElement('style');
+        style.textContent = styleString;
+        document.head.append(style);
+    }
+
+    function _observeDOM() {
+		var MutationObserver = window.MutationObserver || window.WebKitMutationObserver,
+			eventListenerSupported = window.addEventListener;
+
+		return function (obj, callback) {
+			if (MutationObserver) {
+				// define a new observer
+				var obs = new MutationObserver(function (mutations, observer) {
+					if (mutations[0].addedNodes.length || mutations[0].removedNodes.length)
+						callback();
+				});
+
+				obs.observe(obj, {
+					childList: true,
+					subtree: true
+				});
+			} else if (eventListenerSupported) {
+				obj.addEventListener('DOMNodeInserted', callback, false);
+				obj.addEventListener('DOMNodeRemoved', callback, false);
+			}
+		};
+	}
+
     function hello() {
-        console.log('ezfy working');
+        console.log('EZFY is on')
     }
 
     return {
         init: function() {
             document.addEventListener("DOMContentLoaded", function() {
-
                 hello();
-
-                window.onresize = function(event) {
-                    hello();
-                };
             });
+
+            window.onresize = function(event) {
+
+            };
+
+            window.onload = function() {
+
+            }
         }
     };
 })();
