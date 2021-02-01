@@ -7,8 +7,6 @@ Basic structure for a Shopify Javascript customization.
 window.ezfy = window.ezfy || {};
 
 ezfy = (function () {
-  const DEBUG = true;
-
   function _loadScript(src) {
     return new Promise(function (resolve, reject) {
       var s;
@@ -70,10 +68,9 @@ ezfy = (function () {
     return /cart/.test(window.location.href);
   }
 
-  function _waitForElement(selector, delay = 1000, tries = 10) {
+  function _waitForElement(selector, delay = 50, tries = 250) {
     const element = document.querySelector(selector);
 
-    // creates a local variable w/ the name of the selector to keep track of all tries
     if (!window[`__${selector}`]) {
       window[`__${selector}`] = 0;
     }
@@ -86,14 +83,13 @@ ezfy = (function () {
       });
     }
 
-    //element not found, retry
     if (element === null) {
       if (window[`__${selector}`] >= tries) {
         window[`__${selector}`] = 0;
         return Promise.reject(null);
       }
 
-      return _search().then(() => waitForElement(selector));
+      return _search().then(() => _waitForElement(selector));
     } else {
       return Promise.resolve(element);
     }
@@ -105,22 +101,12 @@ ezfy = (function () {
     document.head.append(style);
   }
 
-  function handleConsoleLog() {
-    if (DEBUG) {
-      return;
-    }
-
-    return (console.log = function () {});
-  }
-
   function hello() {
     console.log("EZFY is on");
   }
 
   return {
     init: function () {
-      handleConsoleLog();
-
       document.addEventListener("DOMContentLoaded", function () {
         hello();
       });
