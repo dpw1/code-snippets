@@ -17,6 +17,14 @@ ezfy = (function () {
       document.head.appendChild(s);
     });
   }
+  
+  function _extractTextBetween(text, start, end){
+	if (!start || !end){
+			throw new Error(`Please add a "start" and "end" parameter`);
+		}
+		
+		return text.split(start)[1].split(end)[0]
+  }
 
   function _loadStyle(src) {
     return new Promise(function (resolve, reject) {
