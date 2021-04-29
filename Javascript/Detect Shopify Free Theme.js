@@ -145,7 +145,7 @@ function detectTheme() {
 		}
 
 		let $navbar = document.querySelector(
-			`header.site-header form[action*='search'] + a [class*='cart-badge']`
+			`header.site-header form[action*='search'] + .header-cart-btn [class*='icon-cart']`
 		);
 
 		if ($navbar) {
