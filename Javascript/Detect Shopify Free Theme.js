@@ -36,140 +36,101 @@ https://minimal-vintage-theme.myshopify.com/
 */
 
 function detectTheme() {
-	let theme = null;
+  let theme = null;
 
-	const getThemeName = () =>
-		window.BOOMR && window.BOOMR.themeName.trim().toLowerCase();
+  const getThemeName = () =>
+    window.BOOMR && window.BOOMR.themeName.trim().toLowerCase();
 
-	const isDebut = (() => {
-		if (getThemeName() === "debut") {
-			return (theme = "debut");
-		}
+  const isDebut = (() => {
+    let $navbar = document.querySelector(
+      `[class='site-header__icons-wrapper'] [class*='site-header__cart'] > svg`,
+    );
 
-		let $navbar = document.querySelector(
-			`[class='site-header__icons-wrapper'] [class*='site-header__cart'] > svg`
-		);
+    if ($navbar) {
+      return (theme = "debut");
+    }
+  })();
 
-		if ($navbar) {
-			return (theme = "debut");
-		}
-	})();
+  const isNarrative = (() => {
+    let $navbar = document.querySelector(
+      `nav.site-header__section > [class*='navigation'] + .navigation`,
+    );
 
-	const isNarrative = (() => {
-		if (getThemeName() === "narrative") {
-			return (theme = "narrative");
-		}
+    if ($navbar) {
+      return (theme = "narrative");
+    }
+  })();
 
-		let $navbar = document.querySelector(
-			`nav.site-header__section > [class*='navigation'] + .navigation`
-		);
+  const isExpress = (() => {
+    let $navbar = document.querySelector(
+      `button > .header__cart-indicator > svg > path[d]`,
+    );
 
-		if ($navbar) {
-			return (theme = "narrative");
-		}
-	})();
+    if ($navbar) {
+      return (theme = "express");
+    }
+  })();
 
-	const isExpress = (() => {
-		if (getThemeName() === "express") {
-			return (theme = "express");
-		}
+  const isVenture = (() => {
+    let $navbar = document.querySelector(
+      `header[class] div + div > #SiteNavSearchCart`,
+    );
+    if ($navbar) {
+      return (theme = "venture");
+    }
+  })();
 
-		let $navbar = document.querySelector(
-			`button > .header__cart-indicator > svg > path[d]`
-		);
+  const isBoundless = (() => {
+    let $navbar = document.querySelector(
+      `.site-header > div > div + div + div[class*='grid__item'] .icon-cart`,
+    );
 
-		if ($navbar) {
-			return (theme = "express");
-		}
-	})();
+    if ($navbar) {
+      return (theme = "boundless");
+    }
+  })();
 
-	const isVenture = (() => {
-		if (getThemeName() === "venture") {
-			return (theme = "venture");
-		}
+  const isSimple = (() => {
+    let $navbar = document.querySelector(
+      `[id*='section-header'] .top-bar > div + .grid__item svg[viewBox*='20 20']`,
+    );
 
-		let $navbar = document.querySelector(
-			`header[class] div + div > #SiteNavSearchCart`
-		);
+    if ($navbar) {
+      return (theme = "simple");
+    }
+  })();
 
-		if ($navbar) {
-			return (theme = "venture");
-		}
-	})();
+  const isBrooklyn = (() => {
+    let $navbar = document.querySelector(
+      `.site-header .site-nav .site-nav__item + .site-nav__item + .site-nav__item + .site-nav__item + .site-nav__item + .site-nav__item +.site-nav__item [class*='fallback']`,
+    );
 
-	const isBoundless = (() => {
-		if (getThemeName() === "boundless") {
-			return (theme = "boundless");
-		}
+    if ($navbar) {
+      return (theme = "brooklyn");
+    }
+  })();
 
-		let $navbar = document.querySelector(
-			`.site-header > div > div + div + div[class*='grid__item'] .icon-cart`
-		);
+  const isSupply = (() => {
+    let $navbar = document.querySelector(
+      `header.site-header form[action*='search'] + .header-cart-btn [class*='icon-cart']`,
+    );
 
-		if ($navbar) {
-			return (theme = "boundless");
-		}
-	})();
+    if ($navbar) {
+      return (theme = "supply");
+    }
+  })();
 
-	const isSimple = (() => {
-		if (getThemeName() === "simple") {
-			return (theme = "simple");
-		}
+  const isMinimal = (() => {
+    let $navbar = document.querySelector(
+      `#shopify-section-header style + div .header-bar + .site-header [class*='display-table']`,
+    );
 
-		let $navbar = document.querySelector(
-			`[id*='section-header'] .top-bar > div + .grid__item svg[viewBox*='20 20']`
-		);
+    if ($navbar) {
+      return (theme = "minimal");
+    }
+  })();
 
-		if ($navbar) {
-			return (theme = "simple");
-		}
-	})();
-
-	const isBrooklyn = (() => {
-		if (getThemeName() === "brooklyn") {
-			return (theme = "brooklyn");
-		}
-
-		let $navbar = document.querySelector(
-			`.site-header .site-nav .site-nav__item + .site-nav__item + .site-nav__item + .site-nav__item + .site-nav__item + .site-nav__item +.site-nav__item [class*='fallback']`
-		);
-
-		if ($navbar) {
-			return (theme = "brooklyn");
-		}
-	})();
-
-	const isSupply = (() => {
-		if (getThemeName() === "supply") {
-			return (theme = "supply");
-		}
-
-		let $navbar = document.querySelector(
-			`header.site-header form[action*='search'] + .header-cart-btn [class*='icon-cart']`
-		);
-
-		if ($navbar) {
-			return (theme = "supply");
-		}
-	})();
-	
-		const isMinimal = (() => {
-		if (getThemeName() === "minimal") {
-			return (theme = "minimal");
-		}
-
-		let $navbar = document.querySelector(
-			`#shopify-section-header style + div .header-bar + .site-header [class*='display-table']`
-		);
-
-		if ($navbar) {
-			return (theme = "minimal");
-		}
-	})();
-	
-
-
-	return theme;
+  return theme;
 }
 
 detectTheme();
