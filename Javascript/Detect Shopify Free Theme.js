@@ -32,8 +32,52 @@ https://supply-electronics.myshopify.com/
 Minimal:
 https://minimal-vintage-theme.myshopify.com/
 
+
+## Premium Themes:
+
+Highlight:
+https://highlight-theme.myshopify.com/
+
+Expanse:
+https://expanse-theme-furniture.myshopify.com/
+
+Streamline:
+https://streamline-theme-core.myshopify.com
+
 ## Usage:
 */
+
+const themes = {
+  debut: {
+    name: "Debut",
+    url: "https://debut-theme-default.myshopify.com/",
+  },
+
+  narrative: {
+    name: "Narrative",
+    url: "https://narrative-theme-earthy.myshopify.com/",
+  },
+
+  express: {
+    name: "Express",
+    url: "https://express-theme-bistro.myshopify.com/",
+  },
+
+  venture: {
+    name: "Venture",
+    url: "https://venture-theme-snowboards.myshopify.com/",
+  },
+
+  boundless: {
+    name: "Boundless",
+    url: "https://boundless-theme-apparel.myshopify.com/",
+  },
+
+  simple: {
+    name: "Simple",
+    url: "https://simpletheme-light.myshopify.com/",
+  },
+};
 
 function detectTheme() {
   let theme = null;
@@ -47,7 +91,7 @@ function detectTheme() {
     );
 
     if ($navbar) {
-      return (theme = "debut");
+      return (theme = themes.debut);
     }
   })();
 
@@ -127,6 +171,36 @@ function detectTheme() {
 
     if ($navbar) {
       return (theme = "minimal");
+    }
+  })();
+
+  const isHighlight = (() => {
+    let $navbar = document.querySelector(
+      `header.header-holder .menu-meta [class*='menu-meta'] svg`,
+    );
+
+    if ($navbar) {
+      return (theme = "highlight");
+    }
+  })();
+
+  const isExpanse = (() => {
+    let $navbar = document.querySelector(
+      `#SiteHeader[data-overlay] .header-layout [id*='Header']`,
+    );
+
+    if ($navbar) {
+      return (theme = "expanse");
+    }
+  })();
+
+  const isStreamline = (() => {
+    let $body = document.querySelector(
+      `body[data-type_header_capitalize][data-animate_images][data-transitions] [class*='thumb-menu']`,
+    );
+
+    if ($body) {
+      return (theme = "streamline");
     }
   })();
 
