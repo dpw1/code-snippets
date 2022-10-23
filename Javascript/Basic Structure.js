@@ -51,6 +51,14 @@ ezfy = (function () {
     return /cart/.test(window.location.href);
   }
 
+  function isCollectionsPage() {
+    return /\/collections\/.*(\/)?$/.test(window.location.pathname);
+  }
+
+  function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+  }
+
   function _waitForElement(selector, delay = 50, tries = 100) {
     const element = document.querySelector(selector);
 
